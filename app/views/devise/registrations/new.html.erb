@@ -1,0 +1,44 @@
+
+
+<main class="min-h-screen bg-gray-100 dark:bg-blue-950 flex flex-col justify-center items-center py-8">
+  <section class="mb-8 text-center">
+    <h1 class="text-blue-900 dark:text-white text-4xl font-bold mb-2">ChatApp</h1>
+    <p class="text-gray-700 dark:text-white font-semibold">This is the chat app with RoR using Stimulus</p>
+  </section>
+
+  <section class="w-full max-w-md bg-white dark:bg-white/10 rounded-xl shadow-lg p-8 flex flex-col items-center">
+    <h2 class="text-blue-900 dark:text-white font-bold text-2xl mb-6">Sign up</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: 'w-full space-y-5') do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="flex gap-1 my-2 items-center w-96">
+        <%= f.label :email, class: 'text-white font-semibold text-sm w-24' %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'rounded px-3 py-2 bg-white text-gray-900 dark:bg-white/80 dark:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full' %>
+      </div>
+
+      <div class="flex gap-1 my-2 items-center w-full">
+        <%= f.label :password, class: 'text-white font-semibold text-sm w-24' %>
+        <%= f.password_field :password, autocomplete: "new-password", class: 'rounded px-3 py-2 bg-white text-gray-900 dark:bg-white/80 dark:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full' %>
+      </div>
+      <div class="flex w-96 items-center justify-end">
+        <% if @minimum_password_length %>
+          <em class="text-sm font-semibold text-white">(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %>
+      </div>
+
+      <div class="flex gap-1 my-2 items-center w-96">
+        <%= f.label :password_confirmation, class: 'text-white font-semibold text-sm w-24' %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'rounded px-3 py-2 bg-white text-gray-900 dark:bg-white/80 dark:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full' %>
+      </div>
+
+      <div class="pt-2">
+        <%= f.submit "Sign up", class: 'w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors duration-200' %>
+      </div>
+    <% end %>
+
+    <div class="mt-5 w-full flex justify-center">
+      <%= render "devise/shared/links" %>
+    </div>
+  </section>
+</main>

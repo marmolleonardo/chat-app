@@ -1,0 +1,5 @@
+<%= turbo_frame_tag "room_#{@room.id}" do%>
+  <h4 class="font-medium text-base text-white text-center">Edit Room</h4>
+  <%= render "form", room: @room %>
+
+<% end %>
