@@ -41,9 +41,22 @@ class RoomsController < ApplicationController
   def destroy
   end
 
+  def add_user
+    @room = Room.find(params[:room_id])
+    @user = User.find(params[:user_id])
+    respond_to do |format|
+      if @user && !@room.users.include?(@user)
+        @room.users << @user
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("room_show_#{@room.id}", partial: "rooms/room", locals: { room: @room }) }
+      else
+        flash.now[:alert] = "User not found or already in the room."
+      end
+    end
+  end
+
   private
     def set_room
-      @room = Room.find(params.expect(:id))
+      @room = Room.find(params[:id] || params[:room_id])
     end
 
     def room_params
