@@ -1,6 +1,32 @@
-<section class='flex flex-col gap-2 mt-10 items-center justify-center'>
+<section class='flex flex-col gap-2 mt-10 items-center justify-center' id='room_show_<%= room.id %>'>
   <div class='flex flex-col'>
     <h3 class='font-bold text-3xl text-white'> <%= room.name %> - Room</h3>
     <span class='text-white font-semibold'>Room ID: <%= room.id %></span>
   </div>
+
+  <section class='flex gap-5'>
+    <div class='py-2 px-10 flex flex-col gap-1 items-center border-sky-600 border rounded-lg my-2 shadow-lg w-96'>
+      <h3 class='font-bold text-2xl text-white mb-4'>Users in this room:</h3>
+      <% room.users.each do |user| %>
+        <div class='flex gap-2 items-center'>
+          <div class='w-3 h-3 rounded-full bg-green-500'></div>
+          <span class='text-white font-semibold'><%= user.email %></span>
+        </div>
+      <% end %>
+    </div>
+    <div class='py-2 px-10 flex flex-col gap-1 items-center border-sky-600 border rounded-lg my-2 shadow-lg w-96'>
+      <h3 class='font-bold text-2xl text-white mb-4'>Add Users:</h3>
+      <% User.all.each do |user| %>
+        <% next if room.users.include?(user) %>
+        <%= button_to add_user_path, params: {user_id: user, room_id: room}, id: "add_user_#{user.id}", method: :post do %>
+          <div class='flex gap-2 items-center'>
+            <div class='w-3 h-3 rounded-full bg-green-500'></div>
+            <span class='text-white font-semibold'><%= user.email %></span>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <section class='flex flex-col gap-4'>
+    </section>
+  </section>
 </section>
