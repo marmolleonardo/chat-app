@@ -1,0 +1,6 @@
+<%= form_with(model: [room, message], id: 'message_form', class: 'flex flex-col w-full') do |f| %>
+  <div class="flex w-full">
+    <%= f.text_field :name, class: 'w-full rounded border border-gray-100 font-semibold text-xs' %>
+    <%= f.submit class: 'p-2 text-sm text-white font-semibold bg-green-600 rounded cursor-pointer' %>
+  </div>
+<% end %>

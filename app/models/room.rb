@@ -2,7 +2,7 @@ class Room < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   has_many :user_rooms
   has_many :users, through: :user_rooms
-  has_many :message
+  has_many :messages
 
   after_update_commit :update_room_details
 
